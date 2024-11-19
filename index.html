@@ -193,7 +193,7 @@
     </div>
 
     <script>
-        // Functie pentru calculul Cel Mai Mare Divizor Comun între 2 numere
+        // Nu te mai uita in console
         function gcd(a, b) {
             while (b !== 0) {
                 let temp = b;
@@ -203,7 +203,6 @@
             return a;
         }
 
-        // Functie pentru descompunerea unui numar in factori primi
         function primeFactors(num) {
             let factors = [];
             for (let i = 2; i <= num; i++) {
@@ -215,13 +214,11 @@
             return factors;
         }
 
-        // Functie pentru calculul Cel Mai Mare Divizor Comun între mai multe numere
         function calculateGCD() {
             let allNumbers = document.getElementById("allNumbers").value;
             allNumbers = allNumbers.includes(",") ? allNumbers.split(",") : allNumbers.split(" ");
             let error = false;
 
-            // Verificare validitate numere
             for (let index = 0; index < allNumbers.length; index++) {
                 const element = allNumbers[index].trim();
                 if (isNaN(element) || !Number.isInteger(Number(element)) || element === "") {
@@ -230,18 +227,15 @@
                 }
             }
 
-            // Daca nu sunt erori
             if (!error && allNumbers.length > 1) {
                 let numbers = allNumbers.map(num => parseInt(num.trim()));
 
-                // Afișează pașii pentru descompunerea fiecărui număr
                 let stepsHTML = '';
                 let primeFactorLists = [];
                 numbers.forEach(num => {
                     let factors = primeFactors(num);
                     let stepHTML = `Numărul ${num} este descompus astfel:\n`;
 
-                    // Pașii de descompunere
                     let currentNum = num;
                     factors.forEach(factor => {
                         stepHTML += `
@@ -254,35 +248,27 @@
                     `;
                     stepsHTML += stepHTML + '<br><br>';
 
-                    // Salvează factori pentru fiecare număr
                     primeFactorLists.push(factors);
                 });
 
-                // Afișează pașii de descompunere
                 document.getElementById("stepsContainer").innerHTML = stepsHTML;
 
-                // Calcul Cel Mai Mare Divizor Comun între mai multe numere
                 let gcdFinal = numbers[0];
                 numbers.slice(1).forEach(num => {
                     gcdFinal = gcd(gcdFinal, num);
                 });
 
-                // Afișează rezultatul final pentru GCD
                 document.getElementById("gcd").innerHTML = `Cel mai mare divizor comun = ${gcdFinal}`;
             } else {
-                // Erori în caz de input invalid
                 document.getElementById("gcd").innerHTML = "Te rog introdu numere valide, separate prin virgulă sau spațiu.";
                 document.getElementById("stepsContainer").innerHTML = "";
             }
         }
 
-        // Functie pentru calculul Cel Mai Mic Multiplu Comun între mai multe numere
         function calculateLCM() {
             let allNumbers = document.getElementById("allNumbers").value;
             allNumbers = allNumbers.includes(",") ? allNumbers.split(",") : allNumbers.split(" ");
-            let error = false;
 
-            // Verificare validitate numere
             for (let index = 0; index < allNumbers.length; index++) {
                 const element = allNumbers[index].trim();
                 if (isNaN(element) || !Number.isInteger(Number(element)) || element === "") {
@@ -291,18 +277,17 @@
                 }
             }
 
-            // Daca nu sunt erori
             if (!error && allNumbers.length > 1) {
                 let numbers = allNumbers.map(num => parseInt(num.trim()));
 
-                // Afișează pașii pentru descompunerea fiecărui număr
+
                 let stepsHTML = '';
                 let primeFactorLists = [];
                 numbers.forEach(num => {
                     let factors = primeFactors(num);
                     let stepHTML = `Numărul ${num} este descompus astfel:\n`;
 
-                    // Pașii de descompunere
+
                     let currentNum = num;
                     factors.forEach(factor => {
                         stepHTML += `
@@ -315,18 +300,17 @@
                     `;
                     stepsHTML += stepHTML + '<br><br>';
 
-                    // Salvează factori pentru fiecare număr
+
                     primeFactorLists.push(factors);
                 });
 
-                // Afișează pașii de descompunere
                 document.getElementById("stepsContainer").innerHTML = stepsHTML;
 
-                // Calcul Cel Mai Mic Multiplu Comun între mai multe numere
+
                 let lcmFactors = {};
                 let lcmFinal = 1;
 
-                // Determinăm factorii și luăm puterea maximă pentru fiecare factor
+    
                 primeFactorLists.forEach(factors => {
                     factors.forEach(factor => {
                         let count = factors.filter(f => f === factor).length;
@@ -336,20 +320,17 @@
                     });
                 });
 
-                // Generăm formula finală pentru Cel Mai Mic Multiplu Comun
                 let lcmString = '';
                 for (let factor in lcmFactors) {
                     lcmString += `${factor}¹•`;
                     lcmFinal *= Math.pow(factor, lcmFactors[factor]);
                 }
-
-                // Elimină ultima „•” din string
+                
                 lcmString = lcmString.slice(0, -1);
 
-                // Afișează formula și rezultatul final
                 document.getElementById("lcm").innerHTML = `Cel mai mic multiplu comun = ${lcmFinal} (${lcmString})`;
             } else {
-                // Erori în caz de input invalid
+                // De ce te uiti in inspect element? CE cauti aici? hmm?
                 document.getElementById("lcm").innerHTML = "Te rog introdu numere valide, separate prin virgulă sau spațiu.";
                 document.getElementById("stepsContainer").innerHTML = "";
             }
@@ -357,3 +338,5 @@
     </script>
 </body>
 </html>
+
+// Mersi model
